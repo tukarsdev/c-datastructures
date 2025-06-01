@@ -11,7 +11,7 @@ void default_free_func(void* context, void* ptr) {
     free(ptr);
 }
 
-Allocator g_default_allocator = {
+g_default_allocator = {
     .alloc = default_malloc_func,
     .free = default_free_func,
     .context = NULL

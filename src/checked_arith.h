@@ -23,29 +23,34 @@ typedef Checked_Result (*checked) (
 );
 
 #define UNSIGNED_CHECKED_ARITH_FUNCTIONS(TYPE) \
-    typedef Checked_Result (*checked##_TYPE) (const TYPE x, const TYPE y, TYPE* res); \
+    typedef Checked_Result (*checked_##TYPE) ( \
+        const TYPE x, \
+        const TYPE y, \
+        TYPE* res \
+    ); \
     \
-    checked##_TYPE TYPE##_add; \
-    checked##_TYPE TYPE##_add_sat; \
-    checked##_TYPE TYPE##_add_wrap; \
+    checked_##TYPE TYPE##_add; \
+    checked_##TYPE TYPE##_add_sat; \
+    checked_##TYPE TYPE##_add_wrap; \
     \
-    checked##_TYPE TYPE##_sub; \
-    checked##_TYPE TYPE##_sub_sat; \
-    checked##_TYPE TYPE##_sub_wrap; \
+    checked_##TYPE TYPE##_sub; \
+    checked_##TYPE TYPE##_sub_sat; \
+    checked_##TYPE TYPE##_sub_wrap; \
     \
-    checked##_TYPE TYPE##_mul; \
-    checked##_TYPE TYPE##_mul_sat; \
-    checked##_TYPE TYPE##_mul_wrap; \
+    checked_##TYPE TYPE##_mul; \
+    checked_##TYPE TYPE##_mul_sat; \
+    checked_##TYPE TYPE##_mul_wrap; \
     \
-    checked##_TYPE TYPE##_div; \
-    checked##_TYPE TYPE##_div_sat; \
-    checked##_TYPE TYPE##_div_wrap; \
+    checked_##TYPE TYPE##_div; \
+    checked_##TYPE TYPE##_div_sat; \
+    checked_##TYPE TYPE##_div_wrap; \
     \
-    checked##_TYPE TYPE##_mod;
+    checked_##TYPE TYPE##_mod;
     
 
 UNSIGNED_CHECKED_ARITH_FUNCTIONS(size_t);
-
+typedef unsigned int unsigned_int_t;
+UNSIGNED_CHECKED_ARITH_FUNCTIONS(unsigned_int_t);
 
 
 #endif

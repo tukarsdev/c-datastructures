@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "closure.h": "c",
+        "checked_arith.h": "c",
+        "allocator.h": "c"
+    }
+}

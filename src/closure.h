@@ -19,8 +19,14 @@ typedef struct Closure {
  */
 Closure* closure_create(
     Closure_Func fn, 
-    size_t env_size, 
+    void* env, 
     Allocator* alloc
+);
+
+Closure* closure_create_env(
+    const Closure_Func fn, 
+    const size_t env, 
+    const Allocator* alloc
 );
 
 /**
