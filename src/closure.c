@@ -8,10 +8,13 @@ Closure* closure_create(
     const void* env, 
     const Allocator* alloc
 ) {
-    Closure* closure = (Closure*)allocator_alloc(alloc, sizeof(Closure));
+    Closure* closure;
+    
+    closure = (Closure*)allocator_alloc(alloc, sizeof(Closure));
     if (!closure) { return NULL; }
     (Closure_Func_NC)closure->fn = fn;
     (void*)closure->env = env;
+    
     return closure;
 }
 
@@ -20,12 +23,16 @@ Closure* closure_create_env(
     const size_t env, 
     const Allocator* alloc
 ) {
-    void* envp = allocator_alloc(alloc, env);
+    Closure* closure;
+    void* envp;
+    
+    envp = allocator_alloc(alloc, env);
     if (!envp) { return NULL; }
-    Closure* closure = closure_create(fn, envp, alloc);
+    closure = closure_create(fn, envp, alloc);
     if (!closure) {
         alloc_free(alloc, envp);
         return NULL;
     }
+    
     return closure;
 }

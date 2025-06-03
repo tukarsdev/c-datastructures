@@ -23,46 +23,47 @@ typedef enum Checked_Result {
 
 
 #define P_CHECKED_ARITH_UNSIGNED_DEF(TYPE, FUNC_NAME) \
-    typedef Checked_Result (*checked_arith_f_##FUNC_NAME) ( \
+    typedef Checked_Result (*checked_arith_##FUNC_NAME##_f) ( \
         const TYPE x, \
         const TYPE y, \
         TYPE* res \
     ); \
     \
-    checked_arith_f_##FUNC_NAME FUNC_NAME##_add; \
-    checked_arith_f_##FUNC_NAME FUNC_NAME##_add_sat; \
-    checked_arith_f_##FUNC_NAME FUNC_NAME##_add_wrap; \
+    checked_arith_##FUNC_NAME##_f checked_arith_##FUNC_NAME##_add; \
+    checked_arith_##FUNC_NAME##_f checked_arith_##FUNC_NAME##_add_sat; \
+    checked_arith_##FUNC_NAME##_f checked_arith_##FUNC_NAME##_add_wrap; \
     \
-    checked_arith_f_##FUNC_NAME FUNC_NAME##_sub; \
-    checked_arith_f_##FUNC_NAME FUNC_NAME##_sub_sat; \
-    checked_arith_f_##FUNC_NAME FUNC_NAME##_sub_wrap; \
+    checked_arith_##FUNC_NAME##_f checked_arith_##FUNC_NAME##_sub; \
+    checked_arith_##FUNC_NAME##_f checked_arith_##FUNC_NAME##_sub_sat; \
+    checked_arith_##FUNC_NAME##_f checked_arith_##FUNC_NAME##_sub_wrap; \
     \
-    checked_arith_f_##FUNC_NAME FUNC_NAME##_mul; \
-    checked_arith_f_##FUNC_NAME FUNC_NAME##_mul_sat; \
-    checked_arith_f_##FUNC_NAME FUNC_NAME##_mul_wrap; \
+    checked_arith_##FUNC_NAME##_f checked_arith_##FUNC_NAME##_mul; \
+    checked_arith_##FUNC_NAME##_f checked_arith_##FUNC_NAME##_mul_sat; \
+    checked_arith_##FUNC_NAME##_f checked_arith_##FUNC_NAME##_mul_wrap; \
     \
-    checked_arith_f_##FUNC_NAME FUNC_NAME##_div; \
+    checked_arith_##FUNC_NAME##_f checked_arith_##FUNC_NAME##_div; \
     \
-    checked_arith_f_##FUNC_NAME FUNC_NAME##_mod; \
+    checked_arith_##FUNC_NAME##_f checked_arith_##FUNC_NAME##_mod; \
 \
+
 
 #define P_CHECKED_ARITH_SIGNED_DEF(TYPE, FUNC_NAME) \
     P_CHECKED_ARITH_UNSIGNED_DEF(TYPE, FUNC_NAME) \
     \
-    checked_arith_f_##FUNC_NAME FUNC_NAME##_div_sat; \
-    checked_arith_f_##FUNC_NAME FUNC_NAME##_div_wrap; \
+    checked_arith_##FUNC_NAME##_f checked_arith_##FUNC_NAME##_div_sat; \
+    checked_arith_##FUNC_NAME##_f checked_arith_##FUNC_NAME##_div_wrap; \
     \
-    checked_arith_f_##FUNC_NAME FUNC_NAME##_mod_pos; \
+    checked_arith_##FUNC_NAME##_f checked_arith_##FUNC_NAME##_mod_pos; \
 \
 
 
-P_CHECKED_ARITH_UNSIGNED_DEF(unsigned char, unsigned_char);
-P_CHECKED_ARITH_UNSIGNED_DEF(unsigned short, unsigned_short);
-P_CHECKED_ARITH_UNSIGNED_DEF(unsigned int, unsigned_int);
-P_CHECKED_ARITH_UNSIGNED_DEF(unsigned long, unsigned_long);
+P_CHECKED_ARITH_UNSIGNED_DEF(unsigned char, uchar);
+P_CHECKED_ARITH_UNSIGNED_DEF(unsigned short, ushort);
+P_CHECKED_ARITH_UNSIGNED_DEF(unsigned int, uint);
+P_CHECKED_ARITH_UNSIGNED_DEF(unsigned long, ulong);
 P_CHECKED_ARITH_UNSIGNED_DEF(size_t, size_t);
-#if defined(PREDEF_STANDARD_C99)
-    P_CHECKED_ARITH_UNSIGNED_DEF(unsigned long long, unsigned_long_long);
+#if defined(PREDEF_STANDARD_C99_CXX11)
+    P_CHECKED_ARITH_UNSIGNED_DEF(unsigned long long, ulong_long);
 #endif
 #ifdef CHECKED_ARITH_INCLUDE_STDINT_H
     P_CHECKED_ARITH_UNSIGNED_DEF(uint8_t, uint8_t);
@@ -81,13 +82,13 @@ P_CHECKED_ARITH_UNSIGNED_DEF(size_t, size_t);
     P_CHECKED_ARITH_UNSIGNED_DEF(uintmax_t, uintmax_t);
 #endif
 
-P_CHECKED_ARITH_UNSIGNED_DEF(signed char, signed_char);
-P_CHECKED_ARITH_UNSIGNED_DEF(short int, short_int);
+P_CHECKED_ARITH_UNSIGNED_DEF(signed char, schar);
+P_CHECKED_ARITH_UNSIGNED_DEF(short, short);
 P_CHECKED_ARITH_UNSIGNED_DEF(int, int);
-P_CHECKED_ARITH_UNSIGNED_DEF(long int, long_int);
+P_CHECKED_ARITH_UNSIGNED_DEF(long, long);
 
-#if defined(PREDEF_STANDARD_C99)
-    P_CHECKED_ARITH_UNSIGNED_DEF(long long int, long_long_int);
+#if defined(PREDEF_STANDARD_C99_CXX11)
+    P_CHECKED_ARITH_UNSIGNED_DEF(long long, long_long);
 #endif
 #ifdef CHECKED_ARITH_INCLUDE_STDINT_H
     P_CHECKED_ARITH_UNSIGNED_DEF(int8_t, int8_t);

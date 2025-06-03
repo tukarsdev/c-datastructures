@@ -1,10 +1,6 @@
 #ifndef C_STANDARD_H
 #define C_STANDARD_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #define PREDEF_STANDARD_C89
 
 #ifdef __STDC_VERSION__
@@ -22,7 +18,7 @@ extern "C" {
     #define PREDEF_STANDARD_C23
 #endif
 
-#endif // __STDC_VERSION__
+#endif /* __STDC_VERSION__ */
 
 #ifdef __cplusplus
 
@@ -43,15 +39,19 @@ extern "C" {
     #define PREDEF_STANDARD_CXX23
 #endif
 
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 #if defined(PREDEF_STANDARD_C99) || defined(PREDEF_STANDARD_CXX11)
     #define PREDEF_STANDARD_C99_CXX11
 #endif
 
-#ifdef __cplusplus
-}
+#if defined(PREDEF_STANDARD_C99)
+    #define PREDEF_INLINE inline
+    #define PREDEF_RESTRICT restrict
+#else
+    #define PREDEF_INLINE
+    #define PREDEF_RESTRICT
 #endif
 
-#endif // ifndef C_STANDARD_H
+#endif /* ifndef C_STANDARD_H */
 

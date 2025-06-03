@@ -2,6 +2,7 @@
 #define ALLOCATOR_H
 
 #include <stddef.h>
+#include "c_standard.h"
 
 typedef struct Allocator Allocator;
 
@@ -34,28 +35,28 @@ struct Allocator {
     void*      context;
 };
 
-inline void* allocator_alloc(
+PREDEF_INLINE void* allocator_alloc(
     Allocator* allocator, 
     size_t size
 ) {
     return allocator->alloc(allocator->context, size);
 }
 
-inline void allocator_free(
+PREDEF_INLINE void allocator_free(
     Allocator* allocator, 
     void* ptr
 ) {
     allocator->free(allocator->context, ptr);
 }
 
-// --- Convenience functions for default C standard library allocator ---
+/* --- Convenience functions for default C standard library allocator --- */
 
-// These functions simply wrap malloc and free, ignoring the context
+/* These functions simply wrap malloc and free, ignoring the context */
 void* default_malloc_func(void* context, size_t size);
 void default_free_func(void* context, void* ptr);
 
-// A globally available default allocator instance using malloc/free
-// Defined in allocator.c
+/* A globally available default allocator instance using malloc/free */
+/* Defined in allocator.c */
 extern Allocator g_default_allocator;
 
 #endif
