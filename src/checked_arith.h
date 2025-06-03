@@ -61,7 +61,7 @@ P_CHECKED_ARITH_UNSIGNED_DEF(unsigned short, unsigned_short);
 P_CHECKED_ARITH_UNSIGNED_DEF(unsigned int, unsigned_int);
 P_CHECKED_ARITH_UNSIGNED_DEF(unsigned long, unsigned_long);
 P_CHECKED_ARITH_UNSIGNED_DEF(size_t, size_t);
-#if defined(PREDEF_STANDARD_C_1999)
+#if defined(PREDEF_STANDARD_C99)
     P_CHECKED_ARITH_UNSIGNED_DEF(unsigned long long, unsigned_long_long);
 #endif
 #ifdef CHECKED_ARITH_INCLUDE_STDINT_H
@@ -86,7 +86,7 @@ P_CHECKED_ARITH_UNSIGNED_DEF(short int, short_int);
 P_CHECKED_ARITH_UNSIGNED_DEF(int, int);
 P_CHECKED_ARITH_UNSIGNED_DEF(long int, long_int);
 
-#if defined(PREDEF_STANDARD_C_1999)
+#if defined(PREDEF_STANDARD_C99)
     P_CHECKED_ARITH_UNSIGNED_DEF(long long int, long_long_int);
 #endif
 #ifdef CHECKED_ARITH_INCLUDE_STDINT_H
