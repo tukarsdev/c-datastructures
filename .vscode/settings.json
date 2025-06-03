@@ -2,6 +2,10 @@
     "files.associations": {
         "closure.h": "c",
         "checked_arith.h": "c",
-        "allocator.h": "c"
+        "allocator.h": "c",
+        "cstddef": "c",
+        "stdlib.h": "c",
+        "stddef.h": "c",
+        "stdint.h": "c"
     }
 }
