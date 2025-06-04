@@ -18,7 +18,12 @@
     #define PREDEF_STANDARD_C23
 #endif
 
+#ifndef PREDEF_STANDARD_C99
+    #define PREDEF_STANDARD_EXACT_C89
+#endif
+
 #endif /* __STDC_VERSION__ */
+
 
 #ifdef __cplusplus
 
@@ -50,12 +55,19 @@
 #endif
 
 
-
-#if defined(PREDEF_STANDARD_C99_CXX98)
-    #define PREDEF_INLINE extern inline
+#ifdef PREDEF_STANDARD_C99_CXX98
+    #define PREDEF_INLINE_H(SIGNATURE, BODY) inline SIGNATURE BODY
 #else
-    #define PREDEF_INLINE
+    #define PREDEF_INLINE_H(SIGNATURE, BODY) SIGNATURE;
 #endif
+
+
+#ifdef PREDEF_STANDARD_C99_CXX98
+    #define PREDEF_INLINE_C(SIGNATURE, BODY) extern inline SIGNATURE;
+#else
+    #define PREDEF_INLINE_C(SIGNATURE, BODY) SIGNATURE BODY
+#endif
+
 
 #endif /* ifndef C_STANDARD_H */
 

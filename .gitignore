@@ -1,6 +1,9 @@
 main.c
 to_implement.txt
 
+# VSCode
+.vscode/
+
 # Prerequisites
 *.d
 
