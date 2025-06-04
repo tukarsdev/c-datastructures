@@ -2,25 +2,24 @@
 #define ALLOCATOR_H
 
 #include <stddef.h>
-#include "c_standard.h"
 
 typedef struct Allocator Allocator;
 
 
 /**
  * @brief Function pointer type for memory allocation.
- * @param context A user-defined pointer passed to the allocator.
  * @param size The number of bytes to allocate.
+ * @param context A user-defined pointer passed to the allocator.
  * @return A pointer to the allocated memory, or NULL on failure.
  */
-typedef void* (*Alloc_Func)(void* context, size_t size);
+typedef void* (*Alloc_Func)(const size_t size, void* context);
 
 /**
  * @brief Function pointer type for memory deallocation.
- * @param context A user-defined pointer passed to the allocator.
  * @param ptr A pointer to the memory to deallocate.
+ * @param context A user-defined pointer passed to the allocator.
  */
-typedef void (*Free_Func)(void* context, void* ptr);
+typedef void (*Free_Func)(const void* ptr, void* context);
 
 /**
  * @brief Structure representing a generic memory allocator.
@@ -35,25 +34,21 @@ struct Allocator {
     void*      context;
 };
 
-PREDEF_INLINE void* allocator_alloc(
-    Allocator* allocator, 
-    size_t size
-) {
-    return allocator->alloc(allocator->context, size);
-}
+void* allocator_alloc(
+    const Allocator* allocator,
+    const size_t size
+);
 
-PREDEF_INLINE void allocator_free(
-    Allocator* allocator, 
-    void* ptr
-) {
-    allocator->free(allocator->context, ptr);
-}
+void allocator_free(
+    const Allocator* allocator,
+    const void* ptr
+);
 
 /* --- Convenience functions for default C standard library allocator --- */
 
 /* These functions simply wrap malloc and free, ignoring the context */
-void* default_malloc_func(void* context, size_t size);
-void default_free_func(void* context, void* ptr);
+void* default_malloc_func(const size_t size, void* context);
+void default_free_func(const void* ptr, void* context);
 
 /* A globally available default allocator instance using malloc/free */
 /* Defined in allocator.c */

@@ -1,7 +1,7 @@
 #ifndef CHECKED_ARITH_H
 #define CHECKED_ARITH_H
 
-// TODO: REMOVE
+/* TODO: REMOVE */
 #define CHECKED_ARITH_INCLUDE_STDINT_H
 
 #include "c_standard.h"

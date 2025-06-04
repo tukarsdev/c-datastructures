@@ -6,6 +6,8 @@
         "cstddef": "c",
         "stdlib.h": "c",
         "stddef.h": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "closure_inline.h": "c",
+        "xtr1common": "c"
     }
 }

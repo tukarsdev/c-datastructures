@@ -1,38 +1,53 @@
 #include "closure.h"
 #include "checked_arith.h"
 
-typedef void (*Closure_Func_NC) (void*, void*);
+struct Closure {
+    Closure_Func fn;
+    void* env;
+};
+
 
 Closure* closure_create(
     const Closure_Func fn, 
-    const void* env, 
-    const Allocator* alloc
+    const size_t env_size, 
+    const Allocator*  allocator
 ) {
     Closure* closure;
+    void* envp = NULL;
     
-    closure = (Closure*)allocator_alloc(alloc, sizeof(Closure));
-    if (!closure) { return NULL; }
-    (Closure_Func_NC)closure->fn = fn;
-    (void*)closure->env = env;
+    if (env_size > 0) {
+        envp = allocator_alloc(allocator, env_size);
+        if (!envp) { return NULL; }
+    }
+    
+    closure = (Closure*)allocator_alloc(allocator, sizeof(Closure));
+    
+    if (!closure) {
+        if (env_size > 0) {
+            allocator_free(allocator, envp);
+        }
+        return NULL;
+    }
+    
+    closure->fn = fn;
+    closure->env = envp;
     
     return closure;
 }
 
-Closure* closure_create_env(
-    const Closure_Func fn, 
-    const size_t env, 
-    const Allocator* alloc
+void closure_call(
+    Closure* closure,
+    void* args
 ) {
-    Closure* closure;
-    void* envp;
-    
-    envp = allocator_alloc(alloc, env);
-    if (!envp) { return NULL; }
-    closure = closure_create(fn, envp, alloc);
-    if (!closure) {
-        alloc_free(alloc, envp);
-        return NULL;
+    closure->fn(closure->env, args);
+}
+
+void closure_free(
+    Closure* closure,
+    Allocator* allocator
+) {
+    if (closure->env) {
+        allocator_free(allocator, closure->env);
     }
-    
-    return closure;
+    allocator_free(allocator, closure);
 }

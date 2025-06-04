@@ -41,16 +41,20 @@
 
 #endif /* __cplusplus */
 
+#if defined(PREDEF_STANDARD_C99) || defined(PREDEF_STANDARD_CXX98)
+    #define PREDEF_STANDARD_C99_CXX98
+#endif
+
 #if defined(PREDEF_STANDARD_C99) || defined(PREDEF_STANDARD_CXX11)
     #define PREDEF_STANDARD_C99_CXX11
 #endif
 
-#if defined(PREDEF_STANDARD_C99)
-    #define PREDEF_INLINE inline
-    #define PREDEF_RESTRICT restrict
+
+
+#if defined(PREDEF_STANDARD_C99_CXX98)
+    #define PREDEF_INLINE extern inline
 #else
     #define PREDEF_INLINE
-    #define PREDEF_RESTRICT
 #endif
 
 #endif /* ifndef C_STANDARD_H */
