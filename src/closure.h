@@ -1,6 +1,7 @@
 #ifndef CLOSURE_H
 #define CLOSURE_H
 
+#include "c_standard.h"
 #include "allocator.h"
 
 #ifdef __cplusplus
@@ -8,7 +9,11 @@ extern "C" {
 #endif
 
 typedef void (*Closure_Func) (void* env, void* args);
-typedef struct Closure Closure;
+
+typedef struct Closure {
+    Closure_Func fn;
+    void* env;
+} Closure;
 
 /**
  * @brief 
@@ -23,16 +28,18 @@ Closure* closure_create(
     const Allocator* allocator
 );
 
+
+#define P_CLOSURE_CALL_SIG void closure_call( Closure* closure, void* args)
+#define P_CLOSURE_CALL_B { closure->fn(closure->env, args); }
+
 /**
  * @brief 
  * @param closure
- * @param args
+ * @param args The size of the environment in bytes to allocate. A size of zero will not allocate.
  * @return
  */
-void closure_call(
-    Closure* closure, 
-    void* args
-);
+PREDEF_INLINE_H(P_CLOSURE_CALL_SIG, P_CLOSURE_CALL_B)
+
 
 /**
  * @brief Frees the closure and the associated environment.

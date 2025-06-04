@@ -1,11 +1,6 @@
 #include "closure.h"
 #include "checked_arith.h"
 
-struct Closure {
-    Closure_Func fn;
-    void* env;
-};
-
 
 Closure* closure_create(
     const Closure_Func fn, 
@@ -35,12 +30,7 @@ Closure* closure_create(
     return closure;
 }
 
-void closure_call(
-    Closure* closure,
-    void* args
-) {
-    closure->fn(closure->env, args);
-}
+PREDEF_INLINE_C(P_CLOSURE_CALL_SIG, P_CLOSURE_CALL_B )
 
 void closure_free(
     Closure* closure,
