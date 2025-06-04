@@ -30,7 +30,7 @@ Closure* closure_create(
 
 
 #define P_CLOSURE_CALL_SIG void closure_call( Closure* closure, void* args)
-#define P_CLOSURE_CALL_B { closure->fn(closure->env, args); }
+#define P_CLOSURE_CALL_BODY { closure->fn(closure->env, args); }
 
 /**
  * @brief 
@@ -38,7 +38,7 @@ Closure* closure_create(
  * @param args The size of the environment in bytes to allocate. A size of zero will not allocate.
  * @return
  */
-PREDEF_INLINE_H(P_CLOSURE_CALL_SIG, P_CLOSURE_CALL_B)
+PREDEF_INLINE_H(P_CLOSURE_CALL_SIG, P_CLOSURE_CALL_BODY)
 
 
 /**

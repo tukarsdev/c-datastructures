@@ -30,7 +30,7 @@ Closure* closure_create(
     return closure;
 }
 
-PREDEF_INLINE_C(P_CLOSURE_CALL_SIG, P_CLOSURE_CALL_B )
+PREDEF_INLINE_C(P_CLOSURE_CALL_SIG, P_CLOSURE_CALL_BODY )
 
 void closure_free(
     Closure* closure,
