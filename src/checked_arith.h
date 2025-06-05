@@ -1,18 +1,17 @@
 #ifndef CHECKED_ARITH_H
 #define CHECKED_ARITH_H
 
-/* TODO: REMOVE */
-#define CHECKED_ARITH_INCLUDE_STDINT_H
 
-#include "c_standard.h"
+
 #include <stddef.h>
+#include "c_standard.h"
+#include "extern_c.h"
+
 #ifdef CHECKED_ARITH_INCLUDE_STDINT_H
     #include <stdint.h>
 #endif
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+EXTERN_C_START
 
 typedef enum Checked_Result {
     NO_ERROR = 0,
@@ -107,8 +106,5 @@ P_CHECKED_ARITH_UNSIGNED_DEF(long, long);
     P_CHECKED_ARITH_UNSIGNED_DEF(intmax_t, intmax_t);
 #endif
 
-#ifdef __cplusplus
-}
-#endif
-
+EXTERN_C_END
 #endif

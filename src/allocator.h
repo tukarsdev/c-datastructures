@@ -3,6 +3,9 @@
 
 #include <stddef.h>
 #include "c_standard.h"
+#include "extern_c.h"
+
+EXTERN_C_START
 
 typedef struct Allocator Allocator;
 
@@ -68,4 +71,5 @@ void default_free_func(const void* ptr, void* context);
 /* Defined in allocator.c */
 extern Allocator g_default_allocator;
 
+EXTERN_C_END
 #endif

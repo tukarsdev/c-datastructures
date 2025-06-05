@@ -2,10 +2,9 @@
 #define ARRAY_H
 
 #include "checked_arith.h"
+#include "extern_c.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+EXTERN_C_START
 
 typedef struct Array {
     size_t len;
@@ -18,8 +17,5 @@ Array* array_new() {
 }
 
 
-#ifdef __cplusplus
-}
-#endif
-
+EXTERN_C_END
 #endif

@@ -3,10 +3,9 @@
 
 #include "c_standard.h"
 #include "allocator.h"
+#include "extern_c.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+EXTERN_C_START
 
 typedef void (*Closure_Func) (void* env, void* args);
 
@@ -54,8 +53,5 @@ void closure_free(
 
 
 
-#ifdef __cplusplus
-}
-#endif
-
+EXTERN_C_END
 #endif
