@@ -2,8 +2,8 @@
 #include <stdlib.h>
 
 
-PREDEF_INLINE_C(P_ALLOCATOR_ALLOC_SIG, P_ALLOCATOR_ALLOC_BODY)
-PREDEF_INLINE_C(P_ALLOCATOR_FREE_SIG, P_ALLOCATOR_FREE_BODY)
+C_STANDARD_INLINE_C(P_ALLOCATOR_ALLOC_SIG, P_ALLOCATOR_ALLOC_BODY)
+C_STANDARD_INLINE_C(P_ALLOCATOR_FREE_SIG, P_ALLOCATOR_FREE_BODY)
 
 
 void* default_malloc_func(const size_t size, void* context) {
@@ -21,3 +21,4 @@ Allocator g_default_allocator = {
     .free = default_free_func,
     .context = NULL
 };
+

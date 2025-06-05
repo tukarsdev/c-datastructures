@@ -44,7 +44,7 @@ void* allocator_alloc( \
 #define P_ALLOCATOR_ALLOC_BODY \
     { return allocator->alloc(size, allocator->context); }
 
-PREDEF_INLINE_H(P_ALLOCATOR_ALLOC_SIG, P_ALLOCATOR_ALLOC_BODY)
+C_STANDARD_INLINE_H(P_ALLOCATOR_ALLOC_SIG, P_ALLOCATOR_ALLOC_BODY)
 
 #define P_ALLOCATOR_FREE_SIG \
 void allocator_free( \
@@ -55,7 +55,7 @@ void allocator_free( \
 #define P_ALLOCATOR_FREE_BODY \
     { allocator->free(ptr, allocator->context); }
 
-PREDEF_INLINE_H(P_ALLOCATOR_FREE_SIG, P_ALLOCATOR_FREE_BODY)
+C_STANDARD_INLINE_H(P_ALLOCATOR_FREE_SIG, P_ALLOCATOR_FREE_BODY)
 
 /* --- Convenience functions for default C standard library allocator --- */
 

@@ -38,7 +38,7 @@ Closure* closure_create(
  * @param args The size of the environment in bytes to allocate. A size of zero will not allocate.
  * @return
  */
-PREDEF_INLINE_H(P_CLOSURE_CALL_SIG, P_CLOSURE_CALL_BODY)
+C_STANDARD_INLINE_H(P_CLOSURE_CALL_SIG, P_CLOSURE_CALL_BODY)
 
 
 /**
